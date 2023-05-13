@@ -12,6 +12,7 @@ def test_registration(client, app):
     response = client.post("/register", data={"email": "accord@gmail.com", "password": "accord1234"})
 
     with app.app_context():
+        assert User.query.count() == 1
         assert User.query.first().email == "accord@gmail.com"
 
 
